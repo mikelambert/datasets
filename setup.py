@@ -161,7 +161,7 @@ BENCHMARKS_REQUIRE = [
 TESTS_REQUIRE = [
     # test dependencies
     "absl-py",
-    "pytest",
+    "pytest<7.3.0",  # Temporary pin
     "pytest-datadir",
     "pytest-xdist",
     # optional dependencies
