@@ -165,6 +165,12 @@ def configure_builder_class(
     i.e. set BUILDER_CONFIGS class variable of a builder class to custom configs list.
     """
 
+    builder_subclass = type(builder_cls.__name__, (builder_cls, ), dict(builder_cls.__dict__))
+    builder_subclass.BUILDER_CONFIGS = builder_configs
+    builder_subclass.DEFAULT_CONFIG_NAME = default_config_name
+    builder_subclass.__name__ = f"{builder_cls.__name__.lower().capitalize()}{snakecase_to_camelcase(dataset_name)}"
+    builder_subclass.__qualname__ = f"{builder_cls.__name__.lower().capitalize()}{snakecase_to_camelcase(dataset_name)}"
+    return builder_subclass
     class ConfiguredDatasetBuilder(builder_cls):
         BUILDER_CONFIGS = builder_configs
         DEFAULT_CONFIG_NAME = default_config_name
