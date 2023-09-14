@@ -26,7 +26,7 @@ import textwrap
 import time
 import urllib
 import warnings
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from functools import partial
 from pathlib import Path
 from typing import Dict, Iterable, Mapping, Optional, Tuple, Union
@@ -125,7 +125,7 @@ class BuilderConfig:
     """
 
     name: str = "default"
-    version: Optional[Union[utils.Version, str]] = utils.Version("0.0.0")
+    version: Optional[Union[utils.Version, str]] = field(default_factory=lambda x: utils.Version("0.0.0"))
     data_dir: Optional[str] = None
     data_files: Optional[DataFilesDict] = None
     description: Optional[str] = None
